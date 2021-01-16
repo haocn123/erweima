@@ -1,0 +1,68 @@
+
+<html>
+<head>
+<title>二维码生成-这是一个简单的二维码生成工具</title>
+
+<meta  charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="qrcode.js"></script>
+</head>
+<body>
+
+<div id="qrcode"></div>
+  <!-- 用于生成二维码的容器 -->
+
+
+
+
+
+<br>
+
+<input type="text" id="getval" value="http://www.baidu.com" size="36"/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>宽
+<input type="text" id="getwidth" value="196" size="3"/>高
+<input type="text" id="getheight" value="196" size="3"/>
+容错
+<select id="getCorrect">
+<option value="0">低</option>
+<option value="1">中</option>
+<option value="2" selected>高</option>
+<option value="3">最高</option>
+</select><br>前景
+<input type="text" id="getDark" value="#000000" size="4"/>背景
+<input type="text" id="getLight" value="#ffffff" size="4"/><br>
+<button id="send">点击生成二维码</button>
+
+
+<script type="text/javascript">
+// qrcode.js
+
+document.getElementById("send").onclick =function(){
+ document.getElementById("qrcode").innerHTML ="";
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+
+    
+    text: document.getElementById("getval").value,
+    width: document.getElementById("getwidth").value,//生成的二维码的宽度
+    height: document.getElementById("getheight").value, //生成的二维码的高度
+    colorDark : document.getElementById("getDark").value, // 生成的二维码的深色部分
+    colorLight : document.getElementById("getLight").value, //生成二维码的浅色部分
+    correctLevel : Number(document.getElementById("getCorrect").value)//QRCode.CorrectLevel.H容错四个等级L M Q H
+  });
+
+//容错级别，可设置为：
+//QRCode.CorrectLevel.L
+//QRCode.CorrectLevel.M
+//QRCode.CorrectLevel.Q
+//QRCode.CorrectLevel.H
+
+
+}
+  //jquery-qrcode.js
+  var qrcode = $('#qrcode').qrcode({
+    width: 628,
+    height: 628,
+    text: "size doesn't matter"
+  });
+</script>
+</body>
